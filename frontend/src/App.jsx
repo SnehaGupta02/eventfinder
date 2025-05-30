@@ -21,7 +21,7 @@ function App() {
     const email = emails[id];
     if (!email) return alert("Please enter your email");
 
-    const res = await fetch(`https://eventfinder-backend-kb71.onrender.com/api/ticket/${id}`, {
+    const res = await fetch(`https://eventfinder-backend-kb7l.onrender.com/api/ticket/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
