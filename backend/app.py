@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True, methods=["GET", "POST", "OPTIONS"])
 
 API_KEY = "7Pp29u2juEqh5NItBiA7Dchz4crIUsOv"
 CITY = "Sydney"
@@ -38,8 +38,11 @@ def get_events():
 
     return jsonify(events)
 
-@app.route("/api/ticket/<event_id>", methods=["POST"])
+@app.route("/api/ticket/<event_id>", methods=["POST", "OPTIONS"])
 def get_ticket(event_id):
+    if request.method == "OPTIONS":
+        return '', 200
+
     email = request.json.get("email")
     if not email:
         return {"error": "Email required"}, 400
@@ -56,6 +59,7 @@ def get_ticket(event_id):
         return jsonify({"url": redirect_url})
     else:
         return {"error": "Event not found"}, 404
+
 
 
 import os
