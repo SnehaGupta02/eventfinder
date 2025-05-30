@@ -7,7 +7,7 @@ function App() {
   const [emails, setEmails] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/events")
+    fetch("https://eventfinder-backend.onrender.com/api/events")
       .then((res) => res.json())
       .then(setEvents)
       .catch(console.error);
@@ -21,7 +21,7 @@ function App() {
     const email = emails[id];
     if (!email) return alert("Please enter your email");
 
-    const res = await fetch(`http://localhost:5000/api/ticket/${id}`, {
+    const res = await fetch(`https://eventfinder-backend.onrender.com/api/ticket/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
