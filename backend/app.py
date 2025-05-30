@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
 API_KEY = "7Pp29u2juEqh5NItBiA7Dchz4crIUsOv"
 CITY = "Sydney"
